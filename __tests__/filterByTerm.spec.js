@@ -1,9 +1,3 @@
-function filterByTerm(inputArr, searchTerm) {
-  return inputArr.filter(function(arrayElement) {
-    return arrayElement.url.match(searchTerm);
-  });
-}
-
 describe('Filter function', () => {
   test('it should filter by a search term (link)', () => {
     const input = [
@@ -19,3 +13,10 @@ describe('Filter function', () => {
     expect(filterByTerm(input, 'LINK')).toEqual(output); // New test
   });
 });
+
+function filterByTerm(inputArr, searchTerm) {
+  const regex = new RegExp(searchTerm, 'i');
+  return inputArr.filter(function(arrayElement) {
+    return arrayElement.url.match(regex);
+  });
+}
